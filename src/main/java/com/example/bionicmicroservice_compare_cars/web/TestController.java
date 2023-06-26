@@ -1,4 +1,5 @@
 package com.example.bionicmicroservice_compare_cars.web;
+import com.example.bionicmicroservice_compare_cars.services.CarComparatorService;
 import com.example.bionicmicroservice_compare_cars.services.TestCommunication;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

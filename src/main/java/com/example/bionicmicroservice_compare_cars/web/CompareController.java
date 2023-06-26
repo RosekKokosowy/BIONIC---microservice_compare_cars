@@ -1,7 +1,7 @@
 package com.example.bionicmicroservice_compare_cars.web;
 
-import com.example.bionicmicroservice_compare_cars.data.CarParameters;
-import com.example.bionicmicroservice_compare_cars.data.CarsInfo;
+import com.example.bionicmicroservice_compare_cars.data.Car;
+import com.example.bionicmicroservice_compare_cars.data.ComparisonDto;
 import com.example.bionicmicroservice_compare_cars.services.CarComparatorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +21,13 @@ public class CompareController {
     }
 
     @PostMapping
-    public ResponseEntity<CarParameters> processData(@RequestBody CarsInfo carsInfo) {
+    public ResponseEntity<Car> processData(@RequestBody ComparisonDto carsInfo) {
         carComparatorService.setObject(
                 carsInfo
         );
         int res = carComparatorService.PerformAnalisis();
         log.info("result " + res);
-        log.info(String.valueOf(carsInfo.getCarsParameters().get(res)));
-        return ResponseEntity.ok(carsInfo.getCarsParameters().get(res));
+        log.info(String.valueOf(carsInfo.getCars().get(res)));
+        return ResponseEntity.ok(carsInfo.getCars().get(res));
     }
 }

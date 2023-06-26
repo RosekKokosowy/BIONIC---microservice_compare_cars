@@ -1,33 +1,29 @@
 package com.example.bionicmicroservice_compare_cars.services;
 
-import com.example.bionicmicroservice_compare_cars.data.CarParameters;
-import com.example.bionicmicroservice_compare_cars.data.CarsInfo;
+import com.example.bionicmicroservice_compare_cars.data.Car;
+import com.example.bionicmicroservice_compare_cars.data.ComparisonDto;
 import com.example.bionicmicroservice_compare_cars.data.ParametersWeight;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Year;
-import java.util.ArrayList;
-import java.util.Dictionary;
 
 @Service
 @Slf4j
 public class CarComparatorService {
-
     private final int NUMBER_OF_PARAMS = 4;
 
     private double [] min = new double[NUMBER_OF_PARAMS];
     private double [] max = new double[NUMBER_OF_PARAMS];
     private int [] inv = new int[NUMBER_OF_PARAMS];
 
-    CarParameters car_1;
-    CarParameters car_2;
+    Car car_1;
+    Car car_2;
 
     ParametersWeight weights;
 
-    CarParameters car_1_normalized = new CarParameters();
-    CarParameters car_2_normalized = new CarParameters();
+    Car car_1_normalized = new Car();
+    Car car_2_normalized = new Car();
 
     private double  car1_result;
     private double  car2_result;
@@ -44,11 +40,11 @@ public class CarComparatorService {
     //                                   car1 wheel drive type: String *available: awd, rwd, fwd*, car2 wheel drive
     //                                   type: String, car1 fuel type: String *available: petrol, diesel, electric,
     //                                   gas, hydrogen. , 3 strings: preferred fuel, wheels and gearbox type: ArrayList<String>)
-    public void setObject(CarsInfo carsInfo) {
+    public void setObject(ComparisonDto carsInfo) {
         log.info(carsInfo.toString());
 
-        car_1 = carsInfo.getCarsParameters().get(0);
-        car_2 = carsInfo.getCarsParameters().get(1);
+        car_1 = carsInfo.getCars().get(0);
+        car_2 = carsInfo.getCars().get(1);
 
         weights = carsInfo.getParametersWeight();
 
